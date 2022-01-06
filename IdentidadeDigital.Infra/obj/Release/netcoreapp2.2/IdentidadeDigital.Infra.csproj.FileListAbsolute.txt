@@ -1,0 +1,9 @@
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\bin\Release\netcoreapp2.2\IdentidadeDigital.Infra.deps.json
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\bin\Release\netcoreapp2.2\IdentidadeDigital.Infra.dll
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\bin\Release\netcoreapp2.2\IdentidadeDigital.Infra.pdb
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\obj\Release\netcoreapp2.2\IdentidadeDigital.Infra.csproj.CoreCompileInputs.cache
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\obj\Release\netcoreapp2.2\IdentidadeDigital.Infra.AssemblyInfoInputs.cache
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\obj\Release\netcoreapp2.2\IdentidadeDigital.Infra.AssemblyInfo.cs
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\obj\Release\netcoreapp2.2\IdentidadeDigital.Infra.dll
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\obj\Release\netcoreapp2.2\IdentidadeDigital.Infra.pdb
+D:\IdentidadeDigital\IdentidadeDigital\IdentidadeDigital.Infra\obj\Release\netcoreapp2.2\IdentidadeDigital.Infra.csprojAssemblyReference.cache
