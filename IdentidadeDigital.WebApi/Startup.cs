@@ -30,6 +30,7 @@ namespace IdentidadeDigital.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<OracleDbContext>(options => options.UseOracle(Configuration.GetConnectionString("OracleConnection")));
             services.AddSingleton(Configuration);
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
