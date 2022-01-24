@@ -26,7 +26,7 @@ namespace IdentidadeDigital.WebApi.Controllers
             return Ok("");
         }
 
-        [HttpGet]
+        [HttpGet("ChecarStatusCarteira/{idTransacao}")]
         [ProducesResponseType(200, Type = typeof(StatusCarteira))]
         public IActionResult ChecarStatusCarteira(string idTransacao)
         {
@@ -227,7 +227,7 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
             catch (CommunicationException ex)
             {
-                cidadao.Erro = EnumHelper.GetDescriptionFromEnumValue((Enum)TipoErroEnum.EndPointError);
+                cidadao.Erro = EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.EndPointError);
                 return Ok(cidadao);
             }
             catch (Exception ex)
