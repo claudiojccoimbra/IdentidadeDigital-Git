@@ -3145,11 +3145,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\IdentidadeDigital\\IdentidadeDigital\\IdentidadeDigital.Infra\\IdentidadeDigital.Infra.csproj",
+      "projectUniqueName": "d:\\IdentidadeDigital\\IdentidadeDigital\\IdentidadeDigital.Infra\\IdentidadeDigital.Infra.csproj",
       "projectName": "IdentidadeDigital.Infra",
-      "projectPath": "D:\\IdentidadeDigital\\IdentidadeDigital\\IdentidadeDigital.Infra\\IdentidadeDigital.Infra.csproj",
+      "projectPath": "d:\\IdentidadeDigital\\IdentidadeDigital\\IdentidadeDigital.Infra\\IdentidadeDigital.Infra.csproj",
       "packagesPath": "C:\\Users\\Jones\\.nuget\\packages\\",
-      "outputPath": "D:\\IdentidadeDigital\\IdentidadeDigital\\IdentidadeDigital.Infra\\obj\\",
+      "outputPath": "d:\\IdentidadeDigital\\IdentidadeDigital\\IdentidadeDigital.Infra\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
