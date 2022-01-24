@@ -1,0 +1,2 @@
+IdentidadeDigital/IdentidadeDigital/IdentidadeDigital.Infra/bin
+[^.]*
