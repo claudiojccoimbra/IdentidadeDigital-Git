@@ -1,1 +1,2 @@
 [^.]*
+netcoreapp2.2/
