@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentidadeDigital.WebApi", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentidadeDigital.FrontEnd.WebApi", "IdentidadeDigital.FrontEnd.WebApi\IdentidadeDigital.FrontEnd.WebApi.csproj", "{9CBD71C6-736D-4B29-A4ED-BCEA90F38CB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentidadeDigital.DataBase.Wcf", "IdentidadeDigital.FrontEnd.Wcf\IdentidadeDigital.DataBase.Wcf.csproj", "{D704FAFC-9438-4567-A158-2F013FEA1841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentidadeDigital.FrontEnd.Wcf", "IdentidadeDigital.FrontEnd.Wcf\IdentidadeDigital.FrontEnd.Wcf.csproj", "{D704FAFC-9438-4567-A158-2F013FEA1841}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
