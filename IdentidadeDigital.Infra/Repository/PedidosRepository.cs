@@ -177,17 +177,17 @@ namespace IdentidadeDigital.Infra.Repository
             }
         }
 
-        public bool InserirPedidoQrCode(string pid, int sqTransacao, string idTransacao, Solicitacao solicitacao)
+        public bool InserirPedidoQrCode(Solicitacao solicitacao)
         {
             try
             {
                 using (var db = new IdDigitalDbContext())
                 {
-                    var dadosTipoGrafico = ConsultarDadosTipoGrafico(pid, null);
+                    var dadosTipoGrafico = ConsultarDadosTipoGrafico(solicitacao.Pid, null);
 
                     var pedido = new Pedidos();
-                    pedido.SqTransacao = sqTransacao;
-                    pedido.IdTrasacao = idTransacao;
+                    pedido.SqTransacao = Convert.ToInt32(solicitacao.SqTransacao);
+                    pedido.IdTrasacao = solicitacao.IdTransacao;
                     pedido.ImQrCode = new[] { Convert.ToByte(solicitacao.DeQrCode) };
                     pedido.NuCelLinha = Convert.ToInt32(solicitacao.Nulinha);
                     pedido.NuCelImei = solicitacao.NuImei;
@@ -208,7 +208,7 @@ namespace IdentidadeDigital.Infra.Repository
             }
             catch (Exception e)
             {
-                new LogRepository().InserirLog(idTransacao, "InserirPedidoQrCode -> " + e.Message);
+                new LogRepository().InserirLog(solicitacao.IdTransacao, "InserirPedidoQrCode -> " + e.Message);
 
                 throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.InserirIdentificacao));
             }

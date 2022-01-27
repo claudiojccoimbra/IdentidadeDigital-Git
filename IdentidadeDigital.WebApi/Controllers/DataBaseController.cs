@@ -86,11 +86,11 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpPost("InserirPedidoQrCode")]
-        public IActionResult InserirPedidoQrCode(string pid, int sqTransacao, string idTransacao, [FromBody] Solicitacao solicitacao)
+        public IActionResult InserirPedidoQrCode([FromBody] Solicitacao solicitacao)
         {
             try
             {
-                return Ok(new PedidosRepository().InserirPedidoQrCode(pid, sqTransacao, idTransacao, solicitacao));
+                return Ok(new PedidosRepository().InserirPedidoQrCode(solicitacao));
             }
             catch (Exception ex)
             {

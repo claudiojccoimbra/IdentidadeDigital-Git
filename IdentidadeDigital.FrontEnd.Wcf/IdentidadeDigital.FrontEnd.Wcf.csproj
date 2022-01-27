@@ -69,14 +69,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IdentidadaDigital.svc" />
+    <Content Include="IdentidadeDigital.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentidadaDigital.svc.cs">
-      <DependentUpon>IdentidadaDigital.svc</DependentUpon>
+    <Compile Include="DataContracts\clsQrCodeRG.cs" />
+    <Compile Include="DataContracts\clsSolicitacao.cs" />
+    <Compile Include="DataContracts\QrCode.cs" />
+    <Compile Include="DataContracts\StatusCarteira.cs" />
+    <Compile Include="DataContracts\VersaoApp.cs" />
+    <Compile Include="IdentidadeDigital.svc.cs">
+      <DependentUpon>IdentidadeDigital.svc</DependentUpon>
     </Compile>
-    <Compile Include="IServiceIdentidadeDigital.cs" />
+    <Compile Include="Interface\IServiceIdentidadeDigital.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

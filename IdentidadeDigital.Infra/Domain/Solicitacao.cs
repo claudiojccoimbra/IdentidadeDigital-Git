@@ -18,5 +18,9 @@ namespace IdentidadeDigital.Infra.Domain
         public string NuGpsLong { get; set; }
         public string DeTpGrafico { get; set; }
         public string DeQrCode { get; set; }
+ 
+        public string Pid { get; set; }
+        public string SqTransacao { get; set; }
+        public string IdTransacao { get; set; }
     }
 }

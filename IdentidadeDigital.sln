@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentidadeDigital.Infra", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentidadeDigital.WebApi", "IdentidadeDigital.WebApi\IdentidadeDigital.WebApi.csproj", "{49E45A41-C42F-4F8A-A6C8-01A298807D8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentidadeDigital.FrontEnd.WebApi", "IdentidadeDigital.FrontEnd.WebApi\IdentidadeDigital.FrontEnd.WebApi.csproj", "{9CBD71C6-736D-4B29-A4ED-BCEA90F38CB8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentidadeDigital.FrontEnd.Wcf", "IdentidadeDigital.FrontEnd.Wcf\IdentidadeDigital.FrontEnd.Wcf.csproj", "{D704FAFC-9438-4567-A158-2F013FEA1841}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{49E45A41-C42F-4F8A-A6C8-01A298807D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E45A41-C42F-4F8A-A6C8-01A298807D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E45A41-C42F-4F8A-A6C8-01A298807D8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CBD71C6-736D-4B29-A4ED-BCEA90F38CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CBD71C6-736D-4B29-A4ED-BCEA90F38CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CBD71C6-736D-4B29-A4ED-BCEA90F38CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CBD71C6-736D-4B29-A4ED-BCEA90F38CB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D704FAFC-9438-4567-A158-2F013FEA1841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D704FAFC-9438-4567-A158-2F013FEA1841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D704FAFC-9438-4567-A158-2F013FEA1841}.Release|Any CPU.ActiveCfg = Release|Any CPU
