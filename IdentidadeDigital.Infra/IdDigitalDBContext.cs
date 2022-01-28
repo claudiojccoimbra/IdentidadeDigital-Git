@@ -11,7 +11,10 @@ namespace IdentidadeDigital.Infra
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseOracle(@"User Id=fac;Password=fac;Data Source=(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=on))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.225)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.226)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.227)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=dic)))");
+                //PROD
+                //optionsBuilder.UseOracle(@"User Id=fac;Password=fac;Data Source=(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=on))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.225)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.226)(PORT=1521))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.227)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=dic)))");
+                //HOMOLOG
+                optionsBuilder.UseOracle(@"User Id=fac;Password=fac;Data Source=(DESCRIPTION=(ADDRESS_LIST= (LOAD_BALANCE=on))(ADDRESS=(PROTOCOL=tcp)(HOST=10.200.96.222)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=seid)))");
             }
         }
 
