@@ -50,20 +50,13 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("ChecarVersao/{nuVersao}")]
-        [ProducesResponseType(200, Type = typeof(IdentidadeDigital.Infra.Domain.VersaoApp))]
+        [ProducesResponseType(200, Type = typeof(VersaoApp))]
         public IActionResult ChecarVersao(string nuVersao)
         {
-            IdentidadeDigital.Infra.Domain.VersaoApp versaoApp = new IdentidadeDigital.Infra.Domain.VersaoApp();
+            VersaoApp versaoApp = new VersaoApp();
 
             try
             {
-                //object obj = (object)new VersaoAppRepository().FindAll().FirstOrDefault<IdentidadeDigital.Infra.Model.IdDigital.VersaoApp>((Func<IdentidadeDigital.Infra.Model.IdDigital.VersaoApp, bool>)(w => w.DsVersao == nuVersao));
-                //if (obj == null)
-                //    obj = (object)new IdentidadeDigital.Infra.Domain.VersaoApp()
-                //    {
-                //        Erro = "Versão Inexistente."
-                //    };
-
                 var obj = new VersaoAppRepository().FindAll().FirstOrDefault(f => f.DsVersao == nuVersao);
 
                 if (obj == null)
@@ -201,7 +194,7 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
         }
 
-        [HttpPost("GetSession")]
+        [HttpGet("GetSession")]
         [ProducesResponseType(200, Type = typeof(string))]
         public IActionResult GetSession()
         {
