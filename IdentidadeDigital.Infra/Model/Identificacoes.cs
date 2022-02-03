@@ -20,7 +20,7 @@ namespace IdentidadeDigital.Infra.Model
         public string SgUfTipoGrafico { get; set; }
 
         [Column("NU_ESPELHO")]
-        public int NuEspelho { get; set; }
+        public int? NuEspelho { get; set; }
 
         [Column("NU_SERIE")]
         public string NuSerie { get; set; }

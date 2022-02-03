@@ -18,7 +18,7 @@ namespace IdentidadeDigital.Infra.Model.IdDigital
         public string DeTipograficoUf { get; set; }
 
         [Column("DE_TIPOGRAFICO_NUMERO")]
-        public int DeTipograficoNumero { get; set; }
+        public int? DeTipograficoNumero { get; set; }
 
         [Column("DE_TIPOGRAFICO_SERIE")]
         public string DeTipograficoSerie { get; set; }
@@ -27,10 +27,10 @@ namespace IdentidadeDigital.Infra.Model.IdDigital
         public string DeTipograficoFisico { get; set; }
 
         [Column("NU_RIC")]
-        public int NuRic { get; set; }
+        public long NuRic { get; set; }
 
         [Column("NU_VIAS")]
-        public string NuVias { get; set; }
+        public short NuVias { get; set; }
 
         [Column("DE_QRCODE")]
         public byte[] ImQrCode { get; set; }
@@ -72,7 +72,7 @@ namespace IdentidadeDigital.Infra.Model.IdDigital
         public DateTime? DtInclusao { get; set; }
 
         [Column("NU_PID")]
-        public int NuPid { get; set; }
+        public long NuPid { get; set; }
 
         [Column("NU_SCORE")]
         public int NuScore { get; set; }
