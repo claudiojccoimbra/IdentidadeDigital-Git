@@ -130,7 +130,7 @@ namespace IdentidadeDigital.Infra.Repository
                         //tipografico fisico ex. AH12048330
                         if (short.TryParse(solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1), out _))
                         {
-                            query = (from i in db.Identificacoes
+                            query = (from i in db.Identificacoes.AsNoTracking()
                                      where i.NuTipoGraficoFisico == solicitacao.DeTpGrafico
                                      select i).FirstOrDefault();
                         }
@@ -139,7 +139,7 @@ namespace IdentidadeDigital.Infra.Repository
                             //espelho ex. RJ15008570E
                             var espelho = Convert.ToInt64(solicitacao.DeTpGrafico.Substring(2, solicitacao.DeTpGrafico.Length - 3));
 
-                            query = (from i in db.Identificacoes
+                            query = (from i in db.Identificacoes.AsNoTracking()
                                      where i.SgUfTipoGrafico == solicitacao.DeTpGrafico.Substring(0, 2) &&
                                            i.NuEspelho == espelho &&
                                            i.NuSerie == solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1)
@@ -171,9 +171,9 @@ namespace IdentidadeDigital.Infra.Repository
                     return null;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.BuscarDadosPid));
+                throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.ValidacaoQrCode));
             }
         }
 
@@ -188,19 +188,25 @@ namespace IdentidadeDigital.Infra.Repository
                     var pedido = new Pedidos();
                     pedido.SqTransacao = Convert.ToInt32(solicitacao.SqTransacao);
                     pedido.IdTrasacao = solicitacao.IdTransacao;
-                    pedido.ImQrCode = new[] { Convert.ToByte(solicitacao.DeQrCode) };
+                    pedido.ImQrCode =  Convert.FromBase64String(solicitacao.DeQrCode);
                     pedido.NuCelLinha = Convert.ToInt32(solicitacao.Nulinha);
                     pedido.NuCelImei = solicitacao.NuImei;
                     pedido.DeCelIp = solicitacao.DeIp;
                     pedido.DeCelFabricante = solicitacao.DeFabricante;
                     pedido.DeCelModelo = solicitacao.DeModelo;
                     pedido.DeCelSerie = solicitacao.DeSerie;
+                    pedido.DeCelSo = solicitacao.DeSo;
                     pedido.DeCelSoVersao = solicitacao.DeSoVersao;
                     pedido.NuGpsLat = solicitacao.NuGpsLat;
                     pedido.NuGpsLong = solicitacao.NuGpsLong;
                     pedido.TpStatus = 1;
+                    pedido.DtInclusao = DateTime.Now;                
                     pedido.DeTipograficoUf = dadosTipoGrafico.DeTpGraficoUf;
                     pedido.DeTipograficoNumero = dadosTipoGrafico.DeTpGraficoNumero;
+                    pedido.DeTipograficoSerie = dadosTipoGrafico.DeTpGraficoSerie;
+                    pedido.NuRic = dadosTipoGrafico.NuRic;
+                    pedido.NuVias = dadosTipoGrafico.NuVias;
+                    pedido.NuPid = dadosTipoGrafico.NuPid;
 
                     db.Pedidos.Add(pedido);
                     return db.SaveChanges() > 0;
@@ -214,7 +220,7 @@ namespace IdentidadeDigital.Infra.Repository
             }
         }
 
-        public bool InserirPedidoBarCode(Solicitacao solicitacao)
+        public string InserirPedidoBarCode(Solicitacao solicitacao)
         {
             string idTransacao = null;
 
@@ -236,15 +242,15 @@ namespace IdentidadeDigital.Infra.Repository
                         sqTransacao = Convert.ToInt32(command.ExecuteScalar());
                     }
 
-                    // verificação de novas regras
-                    VerificarPermissoesAcessoCarteira(DateTime.Now, dadosTipoGrafico.NuRic);
+                    // comentado por enquanto testes em homolog
+                    //VerificarPermissoesAcessoCarteira(DateTime.Now, dadosTipoGrafico.NuRic);
 
                     idTransacao = Md5ComputeHash(sqTransacao.ToString());
 
                     var pedido = new Pedidos();
                     pedido.SqTransacao = sqTransacao;
                     pedido.IdTrasacao = idTransacao;
-                    pedido.ImQrCode = new[] {Convert.ToByte(solicitacao.DeQrCode)};
+                   // pedido.ImQrCode = Convert.FromBase64String(solicitacao.DeQrCode);
                     pedido.NuCelLinha = Convert.ToInt32(solicitacao.Nulinha);
                     pedido.NuCelImei = solicitacao.NuImei;
                     pedido.DeCelIp = solicitacao.DeIp;
@@ -255,12 +261,17 @@ namespace IdentidadeDigital.Infra.Repository
                     pedido.NuGpsLat = solicitacao.NuGpsLat;
                     pedido.NuGpsLong = solicitacao.NuGpsLong;
                     pedido.TpStatus = 1;
+                    pedido.DtInclusao = DateTime.Now;
                     pedido.DeTipograficoUf = dadosTipoGrafico.DeTpGraficoUf;
                     pedido.DeTipograficoNumero = dadosTipoGrafico.DeTpGraficoNumero;
+                    pedido.DeTipograficoSerie = dadosTipoGrafico.DeTpGraficoSerie;
+                    pedido.NuRic = dadosTipoGrafico.NuRic;
+                    pedido.NuVias = dadosTipoGrafico.NuVias;
+                    pedido.NuPid = dadosTipoGrafico.NuPid;
 
                     db.Pedidos.Add(pedido);
                     db.SaveChanges();
-                    return true;
+                    return idTransacao;
                 }
             }
             catch (Exception e)
