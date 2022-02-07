@@ -8,4 +8,78 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\publicacaoIdentidadeWebapi</_PublishTargetUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>11/22/2021 12:23:17</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>12/08/2021 13:19:20</publishTime>
+    </File>
+    <File Include="IdentidadeDigital.Infra.dll">
+      <publishTime>02/04/2022 11:49:16</publishTime>
+    </File>
+    <File Include="IdentidadeDigital.Infra.pdb">
+      <publishTime>02/04/2022 11:49:16</publishTime>
+    </File>
+    <File Include="IdentidadeDigital.WebApi.deps.json">
+      <publishTime>02/04/2022 11:49:29</publishTime>
+    </File>
+    <File Include="IdentidadeDigital.WebApi.dll">
+      <publishTime>02/04/2022 11:49:17</publishTime>
+    </File>
+    <File Include="IdentidadeDigital.WebApi.pdb">
+      <publishTime>02/04/2022 11:49:17</publishTime>
+    </File>
+    <File Include="IdentidadeDigital.WebApi.runtimeconfig.json">
+      <publishTime>02/04/2022 11:49:29</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <publishTime>06/18/2019 21:21:18</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.dll">
+      <publishTime>06/18/2019 21:21:26</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Relational.dll">
+      <publishTime>06/18/2019 21:21:34</publishTime>
+    </File>
+    <File Include="Microsoft.Win32.SystemEvents.dll">
+      <publishTime>05/15/2018 13:29:34</publishTime>
+    </File>
+    <File Include="Oracle.EntityFrameworkCore.dll">
+      <publishTime>03/23/2021 15:10:02</publishTime>
+    </File>
+    <File Include="Oracle.ManagedDataAccess.dll">
+      <publishTime>03/05/2021 02:07:50</publishTime>
+    </File>
+    <File Include="Remotion.Linq.dll">
+      <publishTime>10/06/2020 15:02:19</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll">
+      <publishTime>05/15/2018 13:29:42</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll">
+      <publishTime>05/15/2018 13:29:34</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll">
+      <publishTime>05/15/2018 13:29:42</publishTime>
+    </File>
+    <File Include="System.Drawing.Common.dll">
+      <publishTime>05/15/2018 13:29:42</publishTime>
+    </File>
+    <File Include="System.Interactive.Async.dll">
+      <publishTime>10/06/2020 14:59:47</publishTime>
+    </File>
+    <File Include="System.Private.ServiceModel.dll">
+      <publishTime>09/20/2019 15:39:22</publishTime>
+    </File>
+    <File Include="System.ServiceModel.dll">
+      <publishTime>09/20/2019 15:39:36</publishTime>
+    </File>
+    <File Include="System.ServiceModel.Primitives.dll">
+      <publishTime>09/20/2019 15:39:38</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>02/04/2022 11:49:29</publishTime>
+    </File>
+  </ItemGroup>
 </Project>
