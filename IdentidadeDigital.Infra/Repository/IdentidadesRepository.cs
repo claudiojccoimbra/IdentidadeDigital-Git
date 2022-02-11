@@ -524,11 +524,11 @@ namespace IdentidadeDigital.Infra.Repository
             }
         }
 
-        public bool InserirIdentidade(Carteira carteira, string idTransacao)
+        public bool InserirIdentidade(Carteira carteira)
         {
             try
             {
-                var dadosPid = new PedidosRepository().ConsultarPedidoIdTransacao(idTransacao);
+                var dadosPid = new PedidosRepository().ConsultarPedidoIdTransacao(carteira.IdTransacao);
 
                 using (var db = new IdDigitalDbContext())
                 {
@@ -553,8 +553,8 @@ namespace IdentidadeDigital.Infra.Repository
                     identidade.NuPid = dadosPid.Pid;
                     identidade.SqTransacao = dadosPid.Transacao;
                     identidade.TpStatusId = (int)TipoStatusIdEnum.Solicitado;
-                    identidade.ImFrente = new[] { Convert.ToByte(carteira.CarteiraFrente)}; // Convert.FromBase64String
-                    identidade.ImVerso = new[] { Convert.ToByte(carteira.CarteiraVerso)};
+                    identidade.ImFrente = Convert.FromBase64String(carteira.CarteiraFrente); //new[] { Convert.ToByte(carteira.CarteiraFrente)}; 
+                    identidade.ImVerso = Convert.FromBase64String(carteira.CarteiraVerso); //new[] { Convert.ToByte(carteira.CarteiraVerso)};
 
                     db.Identidades.Add(identidade);
                     db.SaveChanges();

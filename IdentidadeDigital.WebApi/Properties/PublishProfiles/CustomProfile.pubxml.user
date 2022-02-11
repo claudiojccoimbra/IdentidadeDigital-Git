@@ -16,22 +16,22 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>12/08/2021 13:19:20</publishTime>
     </File>
     <File Include="IdentidadeDigital.Infra.dll">
-      <publishTime>02/04/2022 11:49:16</publishTime>
+      <publishTime>02/11/2022 11:08:45</publishTime>
     </File>
     <File Include="IdentidadeDigital.Infra.pdb">
-      <publishTime>02/04/2022 11:49:16</publishTime>
+      <publishTime>02/11/2022 11:08:45</publishTime>
     </File>
     <File Include="IdentidadeDigital.WebApi.deps.json">
-      <publishTime>02/04/2022 11:49:29</publishTime>
+      <publishTime>02/11/2022 11:08:52</publishTime>
     </File>
     <File Include="IdentidadeDigital.WebApi.dll">
-      <publishTime>02/04/2022 11:49:17</publishTime>
+      <publishTime>02/11/2022 11:08:47</publishTime>
     </File>
     <File Include="IdentidadeDigital.WebApi.pdb">
-      <publishTime>02/04/2022 11:49:17</publishTime>
+      <publishTime>02/11/2022 11:08:47</publishTime>
     </File>
     <File Include="IdentidadeDigital.WebApi.runtimeconfig.json">
-      <publishTime>02/04/2022 11:49:29</publishTime>
+      <publishTime>02/11/2022 11:08:52</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
       <publishTime>06/18/2019 21:21:18</publishTime>
@@ -79,7 +79,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>09/20/2019 15:39:38</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>02/04/2022 11:49:29</publishTime>
+      <publishTime>02/11/2022 11:08:52</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.ServiceModel;
 using Microsoft.AspNetCore.Http;
 
@@ -28,6 +29,7 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("ChecarStatusCarteira/{idTransacao}")]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(200, Type = typeof(StatusCarteira))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult ChecarStatusCarteira(string idTransacao)
@@ -52,6 +54,7 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("ChecarVersao/{nuVersao}")]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(200, Type = typeof(VersaoApp))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult ChecarVersao(string nuVersao)
@@ -111,7 +114,9 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
         }
 
-        [HttpPost("AtualizarEscore/{idTransacao}/{score}")]
+        [HttpGet("AtualizarEscore/{idTransacao}/{score}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AtualizarEscore(string idTransacao, int score)
         {
             try
@@ -120,7 +125,7 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -140,7 +145,8 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("VerificarIdTransacaoProvaVida/{idTransacao}")]
-        [ProducesResponseType(200, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult VerificarIdTransacaoProvaVida(string idTransacao)
         {
             try
@@ -153,13 +159,14 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
         }
 
-        [HttpPost]
-        [ProducesResponseType(200, Type = typeof(bool))]
-        public IActionResult InserirProvaVida([FromBody] List<ImagemProvaVida> listaImagemProvaVida, string idTransacao)
+        [HttpPost("InserirProvaVida")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult InserirProvaVida([FromBody] List<ImagemProvaVida> listaImagemProvaVida)
         {
             try
             {
-                return Ok(new ProvaVidaRepository().InserirProvaVida(listaImagemProvaVida, idTransacao));
+                return Ok(new ProvaVidaRepository().InserirProvaVida(listaImagemProvaVida, listaImagemProvaVida[0].IdTransacao));
             }
             catch (Exception ex)
             {
@@ -168,7 +175,8 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("ConsultarFotoCarteira/{idTransacao}")]
-        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult ConsultarFotoCarteira(string idTransacao)
         {
             try
@@ -182,6 +190,7 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("ConsultarIdentidade/{idTransacao}")]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(200, Type = typeof(Carteira))]
         public IActionResult ConsultarIdentidade(string idTransacao)
         {
@@ -218,6 +227,7 @@ namespace IdentidadeDigital.WebApi.Controllers
         }
 
         [HttpGet("ConsultarDadosRic/{idTransacao}")]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(200, Type = typeof(Cidadao))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult ConsultarDadosRic(string idTransacao)
@@ -240,8 +250,10 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
         }
 
-        [HttpPost("AtualizarStatusIdentidade/{idTransacao}/{statusId}")]
-        [ProducesResponseType(200, Type = typeof(bool))]
+        [HttpGet("AtualizarStatusIdentidade/{idTransacao}/{statusId}")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AtualizarStatusIdentidade(string idTransacao, int statusId)
         {
             try
@@ -250,7 +262,7 @@ namespace IdentidadeDigital.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
