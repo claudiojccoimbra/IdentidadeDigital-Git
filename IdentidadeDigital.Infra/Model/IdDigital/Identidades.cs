@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
+using Oracle.ManagedDataAccess.Types;
 
 namespace IdentidadeDigital.Infra.Model.IdDigital
 {
@@ -29,19 +31,19 @@ namespace IdentidadeDigital.Infra.Model.IdDigital
         [Column("TP_STATUS_ID")]
         public int TpStatusId { get; set; }
 
-        [Column("IM_FRENTE")]
+        [Column("IM_FRENTE", TypeName = "BLOB")]
         public byte[] ImFrente { get; set; }
 
-        [Column("IM_VERSO")]
+        [Column("IM_VERSO", TypeName = "BLOB")]
         public byte[] ImVerso { get; set; }
 
-        [Column("IM_QRCODE")]
+        [Column("IM_QRCODE", TypeName = "BLOB")]
         public byte[] ImQrCode { get; set; }
 
-        [Column("IM_PDF")]
+        [Column("IM_PDF", TypeName = "BLOB")]
         public byte[] ImPdf { get; set; }
 
-        [Column("IM_ASSINATURA")]
+        [Column("IM_ASSINATURA", TypeName = "BLOB")]
         public byte[] ImAssinatura { get; set; }
 
         [Column("NU_SCORE")]

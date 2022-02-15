@@ -551,17 +551,19 @@ namespace IdentidadeDigital.Infra.Repository
                     identidade.NuRic = Convert.ToInt32(dadosPid.Ric);
                     identidade.NuVias = dadosPid.Vias;
                     identidade.NuPid = dadosPid.Pid;
+                    identidade.DtAtualiza = DateTime.Now;
                     identidade.SqTransacao = dadosPid.Transacao;
                     identidade.TpStatusId = (int)TipoStatusIdEnum.Solicitado;
-                    identidade.ImFrente = Convert.FromBase64String(carteira.CarteiraFrente); //new[] { Convert.ToByte(carteira.CarteiraFrente)}; 
-                    identidade.ImVerso = Convert.FromBase64String(carteira.CarteiraVerso); //new[] { Convert.ToByte(carteira.CarteiraVerso)};
+                    identidade.ImFrente = Convert.FromBase64String(carteira.CarteiraFrente); 
+                    identidade.ImVerso = Convert.FromBase64String(carteira.CarteiraVerso); 
+                    identidade.ImPdf = Convert.FromBase64String(carteira.CarteiraPdf);
 
                     db.Identidades.Add(identidade);
                     db.SaveChanges();
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.InserirImagemCarteira));
             }

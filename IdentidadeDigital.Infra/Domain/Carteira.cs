@@ -12,6 +12,7 @@ namespace IdentidadeDigital.Infra.Domain
         public string IdTransacao { get; set; }
         public string CarteiraFrente { get; set; }
         public string CarteiraVerso { get; set; }
+        public string CarteiraPdf { get; set; }
         public string Erro { get; set; }
     }
 

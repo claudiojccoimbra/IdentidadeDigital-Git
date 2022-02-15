@@ -120,55 +120,93 @@ namespace IdentidadeDigital.Infra.Repository
         /// <returns></returns>
         public DadosTipoGrafico ConsultarDadosTipoGrafico(string pid, Solicitacao solicitacao)
         {
+            var dadosTipoGrafico = new DadosTipoGrafico();
+
             try
             {
                 using (var db = new IdDigitalDbContext())
                 {
-                    Identificacoes query;
-                    if (string.IsNullOrEmpty(pid))
+                    using (var command = db.Database.GetDbConnection().CreateCommand())
                     {
-                        //tipografico fisico ex. AH12048330
-                        if (short.TryParse(solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1), out _))
+                        var query = string.Empty;
+
+                        if (string.IsNullOrEmpty(pid))
                         {
-                            query = (from i in db.Identificacoes.AsNoTracking()
-                                     where i.NuTipoGraficoFisico == solicitacao.DeTpGrafico
-                                     select i).FirstOrDefault();
+                            //tipografico fisico ex. AH12048330
+                            if (short.TryParse(solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1), out _))
+                            {
+                                //query = db.Identificacoes.AsNoTracking().FirstOrDefault(f => f.NuTipoGraficoFisico == solicitacao.DeTpGrafico);
+                                query = $@"select NU_RIC, NU_VIAS, SG_UFTIPOGRAFICO, NU_ESPELHO, NU_SERIE,NU_TIPOGRAFICO_FISICO, NU_PID
+                                            FROM CIVIL.IDENTIFICACOES 
+                                            WHERE NU_TIPOGRAFICO_FISICO = '{solicitacao.DeTpGrafico}'";
+                            }
+                            else
+                            {
+                                //espelho ex. RJ15008570E
+                                //var espelho = Convert.ToInt64(solicitacao.DeTpGrafico.Substring(2, solicitacao.DeTpGrafico.Length - 3));
+
+                                //query = (from i in db.Identificacoes.AsNoTracking()
+                                //         where i.SgUfTipoGrafico == solicitacao.DeTpGrafico.Substring(0, 2) &&
+                                //               i.NuEspelho == espelho &&
+                                //               i.NuSerie == solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1)
+                                //         select i).FirstOrDefault();
+
+                                query = $@"select NU_RIC, NU_VIAS, SG_UFTIPOGRAFICO, NU_ESPELHO, NU_SERIE, NU_TIPOGRAFICO_FISICO, NU_PID
+                                            FROM    CIVIL.IDENTIFICACOES 
+                                            WHERE   SG_UFTIPOGRAFICO = '{ solicitacao.DeTpGrafico.Substring(0, 2) }' AND 
+                                                    NU_ESPELHO = '{ solicitacao.DeTpGrafico.Substring(2, solicitacao.DeTpGrafico.Length - 3) }' AND 
+                                                    NU_SERIE = '{ solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1) }'";
+                            }
                         }
                         else
                         {
-                            //espelho ex. RJ15008570E
-                            var espelho = Convert.ToInt64(solicitacao.DeTpGrafico.Substring(2, solicitacao.DeTpGrafico.Length - 3));
+                            //var pidParse = Convert.ToInt64(pid);
+                            //query = (from i in db.Identificacoes.AsNoTracking()
+                            //         where i.NuPid == pidParse
+                            //         select i).FirstOrDefault();
 
-                            query = (from i in db.Identificacoes.AsNoTracking()
-                                     where i.SgUfTipoGrafico == solicitacao.DeTpGrafico.Substring(0, 2) &&
-                                           i.NuEspelho == espelho &&
-                                           i.NuSerie == solicitacao.DeTpGrafico.Substring(solicitacao.DeTpGrafico.Length - 1, 1)
-                                     select i).FirstOrDefault();
+                            query = $@"select NU_RIC, NU_VIAS, SG_UFTIPOGRAFICO, NU_ESPELHO, NU_SERIE,NU_TIPOGRAFICO_FISICO, NU_PID
+                                            FROM CIVIL.IDENTIFICACOES 
+                                            WHERE NU_PID = '{pid}'";
+
                         }
-                    }
-                    else
-                    {
-                        var pidParse = Convert.ToInt64(pid);
 
-                        query = (from i in db.Identificacoes
-                                 where i.NuPid == pidParse
-                                 select i).FirstOrDefault();
-                    }
+                        command.CommandText = query;
+                        command.CommandType = CommandType.Text;
 
-                    if (query != null)
-                    {
-                        return new DadosTipoGrafico
+                        db.Database.OpenConnection();
+
+                        using (var result = command.ExecuteReader())
                         {
-                            DeTpGraficoFisico = query.NuTipoGraficoFisico,
-                            DeTpGraficoNumero = query.NuEspelho,
-                            DeTpGraficoSerie = query.NuSerie,
-                            DeTpGraficoUf = query.SgUfTipoGrafico,
-                            NuRic = query.NuRic,
-                            NuVias = query.NuVias,
-                            NuPid = query.NuPid
-                        };
+                            if (result.Read())
+                            {
+                                dadosTipoGrafico.DeTpGraficoFisico = result["NU_TIPOGRAFICO_FISICO"].ToString();
+                                dadosTipoGrafico.DeTpGraficoNumero = Convert.ToInt32(result["NU_ESPELHO"].ToString());
+                                dadosTipoGrafico.DeTpGraficoSerie = result["NU_SERIE"].ToString();
+                                dadosTipoGrafico.DeTpGraficoUf = result["SG_UFTIPOGRAFICO"].ToString();
+                                dadosTipoGrafico.NuRic = Convert.ToInt64(result["NU_RIC"].ToString());
+                                dadosTipoGrafico.NuVias = Convert.ToByte(result["NU_VIAS"].ToString());
+                                dadosTipoGrafico.NuPid = Convert.ToInt64(result["NU_PID"].ToString());
+
+                                return dadosTipoGrafico;
+                            }
+                        }
+
+                        //if (query != null)
+                        //{
+                        //    return new DadosTipoGrafico
+                        //    {
+                        //        DeTpGraficoFisico = query.NuTipoGraficoFisico,
+                        //        DeTpGraficoNumero = query.NuEspelho,
+                        //        DeTpGraficoSerie = query.NuSerie,
+                        //        DeTpGraficoUf = query.SgUfTipoGrafico,
+                        //        NuRic = query.NuRic,
+                        //        NuVias = query.NuVias,
+                        //        NuPid = query.NuPid
+                        //    };
+                        //}
+                        return null;
                     }
-                    return null;
                 }
             }
             catch (Exception e)
@@ -242,8 +280,7 @@ namespace IdentidadeDigital.Infra.Repository
                         sqTransacao = Convert.ToInt32(command.ExecuteScalar());
                     }
 
-                    // comentado por enquanto testes em homolog
-                    //VerificarPermissoesAcessoCarteira(DateTime.Now, dadosTipoGrafico.NuRic);
+                    VerificarPermissoesAcessoCarteira(DateTime.Now, dadosTipoGrafico.NuRic);
 
                     idTransacao = Md5ComputeHash(sqTransacao.ToString());
 
