@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using IdentidadeDigital.Infra.Domain;
 using IdentidadeDigital.Infra.Domain.Enums;
-using IdentidadeDigital.Infra.Model;
 using IdentidadeDigital.Infra.Model.IdDigital;
 using IdentidadeDigital.Infra.Repository.Base;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IdentidadeDigital.Infra.Repository
 {
@@ -316,33 +313,6 @@ namespace IdentidadeDigital.Infra.Repository
                 new LogRepository().InserirLog(idTransacao, "InserirPedidoQrCode -> " + e.Message);
 
                 throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.InserirIdentificacao));
-            }
-        }
-
-        public bool AtualizarEscore(string idTransacao, int score)
-        {
-            try
-            {
-                var dadosPid = ConsultarPedidoIdTransacao(idTransacao);
-
-                using (var db = new IdDigitalDbContext())
-                {
-                    var query = (from i in db.Pedidos
-                        where i.SqTransacao == dadosPid.Transacao
-                        select i).FirstOrDefault();
-
-                    if (query != null)
-                    {
-                        query.NuScore = score;
-                        db.SaveChanges();
-                        return true;
-                    }
-                }
-                return false;
-            }
-            catch (Exception)
-            {
-                throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.InserirImagemCarteira));
             }
         }
 

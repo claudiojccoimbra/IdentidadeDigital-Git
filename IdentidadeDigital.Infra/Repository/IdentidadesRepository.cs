@@ -667,5 +667,32 @@ namespace IdentidadeDigital.Infra.Repository
             }
         }
 
+        public bool AtualizarEscore(string idTransacao, int score)
+        {
+            try
+            {
+                var dadosPid = new PedidosRepository().ConsultarPedidoIdTransacao(idTransacao);
+
+                using (var db = new IdDigitalDbContext())
+                {
+                    var query = (from i in db.Identidades
+                                 where i.SqTransacao == dadosPid.Transacao
+                                 select i).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        query.NuScore = score;
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.InserirImagemCarteira));
+            }
+        }
+
     }
 }

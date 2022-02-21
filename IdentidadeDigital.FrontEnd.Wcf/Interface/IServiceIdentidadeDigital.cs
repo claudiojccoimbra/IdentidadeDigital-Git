@@ -38,6 +38,6 @@ namespace IdentidadeDigital.FrontEnd.Wcf.Interface
         Task<Carteira> ConsultarIdentidade(string idTransacao);
 
         [OperationContract]
-        Task<StatusCarteira> Teste();
+        Task<QrCode> Teste();
     }
 }

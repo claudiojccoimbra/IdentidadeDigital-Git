@@ -47,6 +47,6 @@ namespace IdentidadeDigital.Infra.Model.IdDigital
         public byte[] ImAssinatura { get; set; }
 
         [Column("NU_SCORE")]
-        public int NuScore { get; set; }
+        public int? NuScore { get; set; }
     }
 }

@@ -121,7 +121,7 @@ namespace IdentidadeDigital.WebApi.Controllers
         {
             try
             {
-                return Ok(new PedidosRepository().AtualizarEscore(idTransacao, score));
+                return Ok(new IdentidadesRepository(_configuration).AtualizarEscore(idTransacao, score));
             }
             catch (Exception ex)
             {
@@ -323,12 +323,12 @@ namespace IdentidadeDigital.WebApi.Controllers
                 };
 
 
-
+                var k = AtualizarEscore("1C313EB2827D6B0F5FD35324876353E7", 18);
                // var k = InserirImagemCarteira(carteira);
 
-                return Ok(new PedidosRepository().InserirPedidoBarCode(clsSolicitacao));
+               // return Ok(new PedidosRepository().InserirPedidoBarCode(clsSolicitacao));
                 //var k = new IdentidadesRepository(_configuration).ConsultarDadosRic("1ED021A05EF5089233379BE996F7BBDD");
-                //return Ok();
+                return Ok();
             }
             catch (Exception ex)
             {

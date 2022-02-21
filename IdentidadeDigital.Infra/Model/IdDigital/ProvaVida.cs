@@ -17,7 +17,7 @@ namespace IdentidadeDigital.Infra.Model.IdDigital
         [Column("TP_IMAGEM")]
         public short TpImagem { get; set; }
 
-        [Column("IM_FOTO")]
+        [Column("IM_FOTO", TypeName = "BLOB")]
         public byte[] ImFoto { get; set; }
     }
 }

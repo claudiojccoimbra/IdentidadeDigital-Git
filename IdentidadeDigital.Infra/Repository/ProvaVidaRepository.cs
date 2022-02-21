@@ -47,7 +47,7 @@ namespace IdentidadeDigital.Infra.Repository
             }
             catch (Exception e)
             {
-                new LogRepository().InserirLog(idTransacao, "InserirProvaVida -> " + e.Message);
+                new LogRepository().InserirLog(idTransacao, "InserirProvaVida -> " + e.InnerException == null ? e.Message : e.InnerException.Message);
                 throw new Exception(EnumHelper.GetDescriptionFromEnumValue(TipoErroEnum.InserirProvaVida));
             }
         }
