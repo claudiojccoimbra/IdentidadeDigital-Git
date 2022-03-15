@@ -1435,10 +1435,10 @@ namespace IdentidadeDigital.FrontEnd.Wcf
             listaProvaVida.Add(clsVida);
             listaProvaVida.Add(clsVida1);
 
-            var result2 = AutenticarFace("D0FB963FF976F9C37FC81FE03C21EA7B", listaProvaVida);
+            var result2 = await AutenticarFace("D0FB963FF976F9C37FC81FE03C21EA7B", listaProvaVida);
 
             //teste ok
-            var result = await ValidarProvaVida("D0FB963FF976F9C37FC81FE03C21EA7B", listaProvaVida);
+            //var result = await ValidarProvaVida("D0FB963FF976F9C37FC81FE03C21EA7B", listaProvaVida);
 
             //StatusCarteira result = await ChecarStatusCarteira("1ED021A05EF5089233379BE996F7BBDD");
             //return result;
@@ -1451,7 +1451,7 @@ namespace IdentidadeDigital.FrontEnd.Wcf
 
             //var result = await CarregarDadosCidadao("1ED021A05EF5089233379BE996F7BBDD");
 
-            return result;
+            return result2;
         }
 
 
